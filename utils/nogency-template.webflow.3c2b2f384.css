@@ -2575,6 +2575,7 @@ figcaption {
 .brand-logo-wrapper {
     justify-content: flex-start;
     display: flex;
+    height: 40px;
 }
 
 .menu-open-wrapper {
