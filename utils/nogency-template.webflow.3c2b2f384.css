@@ -2628,7 +2628,7 @@ figcaption {
 .dot-8x8 {
     width: 8px;
     height: 8px;
-    background-color: var(--orange);
+    background-color: #90EE90;
     border-radius: 100%;
 }
 
