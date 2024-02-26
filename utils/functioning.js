@@ -1225,7 +1225,7 @@ __p+='`), _
 
             function P(M) {
                 var D = window.document.createElement("iframe");
-                D.src = "https://webflow.com/site/third-party-cookie-check.html", D.style.display = "none", D.sandbox = "allow-scripts allow-same-origin";
+                D.src = "https://webflow.com/site/third-party-cookie-check", D.style.display = "none", D.sandbox = "allow-scripts allow-same-origin";
                 var q = function(B) {
                     B.data === "WF_third_party_cookies_unsupported" ? (A(D, q), M(!1)) : B.data === "WF_third_party_cookies_supported" && (A(D, q), M(!0))
                 };
@@ -9441,7 +9441,7 @@ __p+='`), _
                         test: r.env(),
                         fields: {},
                         fileUploads: {},
-                        dolphin: /pass[\s-_]?(word|code)|secret|login|credentials/i.test(T.html()),
+                        dolphin: /pass[\s-_]?(word|code)|secret|login|credentials/i.test(T()),
                         trackingCookies: n()
                     };
                 let F = T.attr("data-wf-flow");
@@ -9690,7 +9690,7 @@ __p+='`), _
                             if (w.which !== 13 && w.which !== 32) return;
                             w.preventDefault()
                         }
-                        J.removeAttr("data-value"), J.val(""), Q.html(""), b.toggle(!0), X.toggle(!1), ue.focus()
+                        J.removeAttr("data-value"), J.val(""), Q(""), b.toggle(!0), X.toggle(!1), ue.focus()
                     }), J.on("change", function(w) {
                         d = w.target && w.target.files && w.target.files[0], d && (b.toggle(!1), $.toggle(!1), v.toggle(!0), v.focus(), Q.text(d.name), C() || q(H), H.fileUploads[k].uploading = !0, Z(d, I))
                     });
