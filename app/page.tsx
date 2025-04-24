@@ -6,8 +6,8 @@ const TestPage: React.FC = () => {
 
     return (
         <div>
-            <h1>Test Page</h1>
-            <p>A person who make things happen</p>
+            <h1>A person who make things happen</h1>
+            <p>I Talk</p>
         </div>
     );
 };
