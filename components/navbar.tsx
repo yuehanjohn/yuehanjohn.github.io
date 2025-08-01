@@ -25,6 +25,8 @@ import {
   SearchIcon,
   Logo,
 } from "@/components/icons";
+import { FaCircle } from "react-icons/fa6";
+
 
 export const Navbar = () => {
   const searchInput = (
@@ -49,15 +51,24 @@ export const Navbar = () => {
   );
 
   return (
-    <HeroUINavbar maxWidth="xl" position="sticky">
+    <HeroUINavbar maxWidth="full" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Logo />
-            <p className="font-bold text-inherit">ACME</p>
+            <div className="flex items-center w-40">
+              <img
+              src="/assets/logos/logo.png"
+              alt="Logo"
+              className="h-7 w-auto object-contain"
+              style={{ aspectRatio: "auto" }}
+              />
+            </div>
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+      </NavbarContent>
+
+      <NavbarContent className="hidden sm:flex basis-3/5 sm:basis-full" justify="center">
+        <ul className="flex gap-4 justify-center">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
@@ -91,17 +102,16 @@ export const Navbar = () => {
           </Link>
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
         <NavbarItem className="hidden md:flex">
           <Button
             isExternal
             as={Link}
             className="text-sm font-normal text-default-600 bg-default-100"
             href={siteConfig.links.sponsor}
-            startContent={<HeartFilledIcon className="text-danger" />}
+            startContent={<FaCircle size={8} className="text-success" />}
             variant="flat"
           >
-            Sponsor
+            Contact
           </Button>
         </NavbarItem>
       </NavbarContent>
