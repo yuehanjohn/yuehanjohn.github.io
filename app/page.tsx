@@ -188,7 +188,13 @@ const TestPage: React.FC = () => {
       <div className="relative h-38 py-8 w-full overflow-hidden">
         <ScrollVelocity
           marqueeMode={true}
-          children={[
+          velocity={100}
+          gap={48}
+          pauseOnHover={false}
+          className="logo-marquee"
+          numCopies={8}
+        >
+          {[
             "bueno.svg",
             "boost.png",
             "turkuamk.png",
@@ -211,12 +217,7 @@ const TestPage: React.FC = () => {
               />
             </div>
           ))}
-          velocity={100}
-          gap={48}
-          pauseOnHover={false}
-          className="logo-marquee"
-          numCopies={8}
-        />
+        </ScrollVelocity>
         <ProgressiveBlur
           className="pointer-events-none absolute top-0 left-0 h-full w-[200px]"
           direction="left"
