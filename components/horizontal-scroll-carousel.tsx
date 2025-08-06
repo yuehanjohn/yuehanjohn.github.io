@@ -25,8 +25,8 @@ export const HorizontalScrollCarousel = ({
   className = "",
   cardClassName = "",
   sectionHeight = "300vh",
-  cardSize = { width: "450px", height: "450px" },
-  gap = "gap-4"
+  cardSize = { width: "100vw", height: "100vh" },
+  gap = "gap-0",
 }: HorizontalScrollCarouselProps) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
@@ -36,13 +36,20 @@ export const HorizontalScrollCarousel = ({
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
 
   // Helper function to determine if item is a CardComponent or direct ReactNode
-  const isCardComponent = (item: CardComponent | ReactNode): item is CardComponent => {
-    return item !== null && typeof item === 'object' && 'id' in item && 'component' in item;
+  const isCardComponent = (
+    item: CardComponent | ReactNode
+  ): item is CardComponent => {
+    return (
+      item !== null &&
+      typeof item === "object" &&
+      "id" in item &&
+      "component" in item
+    );
   };
 
   return (
-    <section 
-      ref={targetRef} 
+    <section
+      ref={targetRef}
       className={`relative ${className}`}
       style={{ height: sectionHeight }}
     >
@@ -51,14 +58,14 @@ export const HorizontalScrollCarousel = ({
           {cards.map((card, index) => {
             const cardId = isCardComponent(card) ? card.id : index;
             const cardContent = isCardComponent(card) ? card.component : card;
-            
+
             return (
               <div
                 key={cardId}
                 className={`flex-shrink-0 ${cardClassName}`}
-                style={{ 
-                  height: cardSize.height, 
-                  width: cardSize.width 
+                style={{
+                  height: cardSize.height,
+                  width: cardSize.width,
                 }}
               >
                 {cardContent}
@@ -108,11 +115,14 @@ export const LegacyCard = ({ card, className = "" }: LegacyCardProps) => {
 export default HorizontalScrollCarousel;
 
 // Utility function to create cards easily
-export const createCard = (id: string | number, component: ReactNode): CardComponent => ({
+export const createCard = (
+  id: string | number,
+  component: ReactNode
+): CardComponent => ({
   id,
-  component
+  component,
 });
 
 // Utility function to create cards from an array of React components
-export const createCards = (components: ReactNode[]): CardComponent[] => 
+export const createCards = (components: ReactNode[]): CardComponent[] =>
   components.map((component, index) => createCard(index, component));

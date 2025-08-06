@@ -3,7 +3,7 @@ export function getLinesOfCodes(): number {
     const now = new Date();
     const msPerWeek = 7 * 24 * 60 * 60 * 1000;
     const weeks = Math.floor((now.getTime() - startDate.getTime()) / msPerWeek);
-    return weeks * 2300;
+    return weeks * 10000;
 }
 
 export function getDrankedCoffee(): number {

@@ -8,6 +8,10 @@ import {
 import { SiSpacex } from "react-icons/si";
 import { FiArrowRight, FiMapPin } from "react-icons/fi";
 import { useRef } from "react";
+import { Card, CardBody, CardHeader, Image } from "@heroui/react";
+import Counter from "@/components/text/counter";
+import { getLinesOfCodes, getDrankedCoffee } from "@/hooks/math";
+import { FaCircle } from "react-icons/fa6";
 
 const SECTION_HEIGHT = 1500;
 
@@ -31,7 +35,7 @@ const CenterImage = () => {
 
   // Calculate when the 3rd section (ParallaxImages) is in view
   // Each section is roughly SECTION_HEIGHT tall, so trigger at 2 * SECTION_HEIGHT
-  const triggerStart = 1 * SECTION_HEIGHT;
+  const triggerStart = 1.5 * SECTION_HEIGHT;
   const triggerEnd = triggerStart + 1500;
 
   // Map scroll position to polygon clip path coordinates
@@ -58,7 +62,7 @@ const CenterImage = () => {
         clipPath,
         backgroundSize,
         opacity,
-        backgroundImage: "url(/assets/images/speech.png)",
+        backgroundImage: "url(/assets/images/speechtest.png)",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
@@ -70,34 +74,68 @@ const CenterImage = () => {
 const ParallaxImages = () => {
   return (
     <div className="mx-auto max-w-5xl px-4 pt-[200px]">
+      <ParallaxImg alt="Written code" start={-200} end={200} className="w-1/3">
+        <Card className=" shadow-lg bg-background/30" isBlurred>
+          <CardHeader className="gap-2">
+            <FaCircle className="text-accent" />
+            <h3 className="text-xl font-bold">Contributed project</h3>
+          </CardHeader>
+          <CardBody className="pt-0">
+            <span className="text-4xl font-bold text-foreground gap-2">
+              <Counter targetValue={20} />+<span className="ml-1"></span>
+            </span>
+          </CardBody>
+        </Card>
+      </ParallaxImg>
       <ParallaxImg
         src="assets/images/award.jpg"
-        alt="And example of a space launch"
-        start={-200}
-        end={200}
-        className="w-1/3"
-      />
-      <ParallaxImg
-        src="assets/images/dev.jpg"
         alt="An example of a space launch"
         start={200}
         end={-250}
         className="mx-auto w-2/3"
       />
+
       <ParallaxImg
-        src="assets/images/dev2.jpg"
-        alt="Orbiting satellite"
+        alt="Written code"
         start={-200}
         end={200}
         className="ml-auto w-1/3"
-      />
+      >
+        <Card className=" shadow-lg bg-background/30" isBlurred>
+          <CardHeader className="gap-2">
+            <FaCircle className="text-accent" />
+
+            <h3 className="text-xl font-bold">Written code</h3>
+          </CardHeader>
+          <CardBody className="pt-0">
+            <span className="text-4xl font-bold text-foreground gap-2">
+              <Counter targetValue={getLinesOfCodes()} />+
+              <span className="ml-1">Lines</span>
+            </span>
+          </CardBody>
+        </Card>
+      </ParallaxImg>
+
       <ParallaxImg
-        src="assets/images/award.jpg"
-        alt="Orbiting satellite"
+        alt="Written code"
         start={0}
         end={-500}
         className="ml-24 w-5/12"
-      />
+      >
+        <Card className=" shadow-lg bg-background/30" isBlurred>
+          <CardHeader className="gap-2">
+            {" "}
+            <FaCircle className="text-accent" />
+            <h3 className="text-xl font-bold">Consumed Coffee</h3>
+          </CardHeader>
+          <CardBody className="pt-0">
+            <span className="text-4xl font-bold text-foreground gap-2">
+              <Counter targetValue={getDrankedCoffee()} />+
+              <span className="ml-1">Cups</span>
+            </span>
+          </CardBody>
+        </Card>
+      </ParallaxImg>
     </div>
   );
 };
@@ -108,12 +146,14 @@ const ParallaxImg = ({
   src,
   start,
   end,
+  children,
 }: {
   className?: string;
-  alt: string;
-  src: string;
+  alt?: string;
+  src?: string;
   start: number;
   end: number;
+  children?: React.ReactNode;
 }) => {
   const ref = useRef(null);
 
@@ -130,27 +170,20 @@ const ParallaxImg = ({
   const transform = useMotionTemplate`translateY(${y}px) scale(${scale})`;
 
   return (
-    <motion.img
-      src={src}
-      alt={alt}
-      className={className}
-      ref={ref}
-      style={{ transform, opacity }}
-    />
+    <motion.div className={className} ref={ref} style={{ transform, opacity }}>
+      {children ? children : src ? <img src={src} alt={alt} /> : null}
+    </motion.div>
   );
 };
 
 export const Schedule = () => {
   return (
-    <section
-      id="launch-schedule"
-      className="mx-auto max-w-5xl px-4 py-48 text-white"
-    >
+    <section id="launch-schedule" className="mx-auto max-w-5xl px-4 py-48">
       <motion.h1
         initial={{ y: 48, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ ease: "easeInOut", duration: 0.75 }}
-        className="mb-20 text-4xl font-black uppercase text-zinc-50"
+        className="mb-20 text-4xl font-black uppercase"
       >
         <div className="mt-20">
           <span
@@ -232,7 +265,7 @@ const ScheduleItem = ({
       className="mb-9 flex items-center justify-between border-b border-zinc-800 px-3 pb-9"
     >
       <div>
-        <p className="mb-1.5 text-xl text-zinc-50">{title}</p>
+        <p className="mb-1.5 text-xl ">{title}</p>
         <p className="text-sm uppercase text-zinc-500">{date}</p>
       </div>
       <div className="flex items-center gap-1.5 text-end text-sm uppercase text-zinc-500">
