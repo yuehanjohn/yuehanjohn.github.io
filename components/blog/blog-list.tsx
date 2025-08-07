@@ -1,16 +1,18 @@
+"use client";
+
 import React from "react";
 import { BlogPostMeta } from "@/lib/blog";
-import BlogNavigation from "@/components/blog/blog-navigation";
-import BlogHeader from "@/components/blog/blog-header";
-import FeaturedPostsSection from "@/components/blog/featured-posts-section";
-import RegularPostsSection from "@/components/blog/regular-posts-section";
-import EmptyState from "@/components/blog/empty-state";
-import { getAllPosts } from "@/lib/blog-server";
+import BlogNavigation from "./blog-navigation";
+import BlogHeader from "./blog-header";
+import FeaturedPostsSection from "./featured-posts-section";
+import RegularPostsSection from "./regular-posts-section";
+import EmptyState from "./empty-state";
 
+interface BlogListProps {
+  posts: BlogPostMeta[];
+}
 
-export default function test() {
-    const posts = getAllPosts();
-  
+export default function BlogList({ posts }: BlogListProps) {
   const featuredPosts = posts.filter((post) => post.featured);
   const regularPosts = posts.filter((post) => !post.featured);
 

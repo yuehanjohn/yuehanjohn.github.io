@@ -1,9 +1,8 @@
-import { title } from "@/components/primitives";
+import { getAllPosts } from "@/lib/blog-server";
+import BlogList from "@/components/blog/blog-list";
 
 export default function BlogPage() {
-  return (
-    <div>
-      <h1 className={title()}>Blog</h1>
-    </div>
-  );
+  const posts = getAllPosts();
+
+  return <BlogList posts={posts} />;
 }
