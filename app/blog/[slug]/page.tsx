@@ -5,7 +5,7 @@ import BlogPost from "@/components/blog/blog-post";
 
 // Next.js app router expects { params: { slug: string } }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const slugs = getAllPostSlugs();
   return slugs.map((slug) => ({
     slug: slug,
