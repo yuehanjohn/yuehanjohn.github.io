@@ -1,53 +1,25 @@
-# Next.js & HeroUI Template
+# Yuehan John | Personal Website
 
-This is a template for creating applications using Next.js 14 (app directory) and HeroUI (v2).
+Welcome to my personal website! I'm Yuehan John, a passionate developer, designer, and writer focused on building modern, accessible, and performant web experiences.
 
-[Try it on CodeSandbox](https://githubbox.com/heroui-inc/heroui/next-app-template)
+## About Me
 
-## Technologies Used
+- **Frontend Developer:** Experienced in React, Next.js, and TypeScript, with a strong focus on UI/UX and accessibility.
+- **Designer:** I love crafting beautiful, responsive interfaces using Tailwind CSS and design systems.
+- **Writer:** I share insights on web development, design, and AI in my blog posts.
+- **Tech Enthusiast:** Always exploring new technologies, frameworks, and best practices to improve my workflow and help others.
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [HeroUI v2](https://heroui.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+## Website Features
 
-## How to Use
+- **Blog:** Articles on web development, design, accessibility, and AI.
+- **Projects:** Showcasing my work and experiments.
+- **Responsive Design:** Optimized for all devices, with a mobile-first approach.
+- **Modern Stack:** Built with Next.js, Tailwind CSS, and TypeScript.
 
-### Use the template with create-next-app
+## Get in Touch
 
-To create a new project based on this template using `create-next-app`, run the following command:
+Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/yuehanjohn/) or [GitHub](https://github.com/yuehanjohn).
 
-```bash
-npx create-next-app -e https://github.com/heroui-inc/next-app-template
-```
+---
 
-### Install dependencies
-
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
-
-```bash
-npm install
-```
-
-### Run the development server
-
-```bash
-npm run dev
-```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@heroui/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/heroui-inc/next-app-template/blob/main/LICENSE).
+Thanks for visiting my site!

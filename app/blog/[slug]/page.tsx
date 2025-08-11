@@ -3,11 +3,7 @@ import { getPostBySlug, getAllPostSlugs, getAllPosts } from "@/lib/blog-server";
 import BlogPostCard from "@/components/blog/blog-post-card";
 import BlogPost from "@/components/blog/blog-post";
 
-interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
-}
+// Next.js app router expects { params: { slug: string } }
 
 export async function generateStaticParams() {
   const slugs = getAllPostSlugs();
@@ -16,7 +12,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
@@ -35,7 +35,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+type PageProps = {
+  params: { slug: string }
+};
+
+export default function BlogPostPage({ params }: PageProps) {
   const post = getPostBySlug(params.slug);
   if (!post) {
     notFound();
