@@ -122,7 +122,17 @@ const Footer: React.FC = () => (
           </p>
         </div>
         <div className="flex flex-row gap-2">
-          <Card className="flex-1 min-w-0" isHoverable isPressable>
+          <Card
+            className="flex-1 min-w-0"
+            isHoverable
+            isPressable
+            onPress={() =>
+              window.open(
+                "https://calendar.app.google/6s3JjxNhkb5ppTe56",
+                "_blank"
+              )
+            }
+          >
             <CardBody className=" p-3 sm:p-4 md:p-5 lg:p-6 justify-center items-center">
               <div className="flex flex-col items-center gap-2">
                 <SiGooglemeet size={30} className="text-primary" />
@@ -140,7 +150,14 @@ const Footer: React.FC = () => (
               </div>
             </CardBody>
           </Card>
-          <Card className="flex-1 min-w-0" isHoverable isPressable>
+          <Card
+            className="flex-1 min-w-0"
+            isHoverable
+            isPressable
+            onPress={() =>
+              window.open("https://www.linkedin.com/in/yuehanjohn/", "_blank")
+            }
+          >
             <CardBody className=" p-3 sm:p-4 md:p-5 lg:p-6 justify-center items-center">
               <div className="flex flex-col items-center gap-2">
                 <FaLinkedinIn size={30} className="text-foreground" />
@@ -158,7 +175,12 @@ const Footer: React.FC = () => (
               </div>
             </CardBody>
           </Card>
-          <Card className="flex-1 min-w-0" isHoverable isPressable>
+          <Card
+            className="flex-1 min-w-0"
+            isHoverable
+            isPressable
+            onPress={() => window.open("https://wa.me/358403633893", "_blank")}
+          >
             <CardBody className=" p-3 sm:p-4 md:p-5 lg:p-6 justify-center items-center">
               <div className="flex flex-col items-center gap-2">
                 <FaWhatsapp size={30} className="text-foreground" />
@@ -178,7 +200,12 @@ const Footer: React.FC = () => (
           </Card>
         </div>
 
-        <Card isHoverable isPressable className="w-full">
+        <Card
+          isHoverable
+          isPressable
+          className="w-full"
+          onPress={() => window.open("mailto:yuehan.dai.john@gmail.com")}
+        >
           <CardBody className="flex flex-col p-3 sm:p-4 md:p-5 lg:p-6">
             <h2 className="text-sm sm:text-base md:text-lg">
               <ScrollFloat
@@ -202,7 +229,12 @@ const Footer: React.FC = () => (
           </CardBody>
         </Card>
 
-        <Card isHoverable isPressable className="w-full">
+        <Card
+          isHoverable
+          isPressable
+          className="w-full"
+          onPress={() => window.open("tel:+358403633893")}
+        >
           <CardBody className="flex flex-col p-3 sm:p-4 md:p-5 lg:p-6">
             <h2 className="text-sm sm:text-base md:text-lg">
               <ScrollFloat

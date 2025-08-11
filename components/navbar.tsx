@@ -81,15 +81,14 @@ export const Navbar = () => {
             </Button>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
-          <Button
-            isExternal
+            <Button
             as={Link}
-            href={siteConfig.links.sponsor}
+            href="/contact"
             startContent={<FaCircle size={8} className="text-success" />}
             variant="light"
-          >
+            >
             Contact
-          </Button>
+            </Button>
         </NavbarItem>
       </NavbarContent>
 
