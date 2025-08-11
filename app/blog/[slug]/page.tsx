@@ -3,8 +3,6 @@ import { getPostBySlug, getAllPostSlugs, getAllPosts } from "@/lib/blog-server";
 import BlogPostCard from "@/components/blog/blog-post-card";
 import BlogPost from "@/components/blog/blog-post";
 
-// Next.js app router expects { params: { slug: string } }
-
 export function generateStaticParams() {
   const slugs = getAllPostSlugs();
   return slugs.map((slug) => ({
@@ -12,12 +10,14 @@ export function generateStaticParams() {
   }));
 }
 
+// Fix: Make params async in generateMetadata
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = getPostBySlug(params.slug);
+  const { slug } = await params; // Await params
+  const post = getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -27,25 +27,27 @@ export async function generateMetadata({
 
   return {
     title: post.title,
-    description:
-      post.description || `Read ${post.title} by ${post.author?.name}`,
+    description: post.description || `Read ${post.title} by ${post.author?.name}`,
     authors: post.author ? [{ name: post.author.name }] : undefined,
     publishedTime: post.publishedAt,
     keywords: post.tags,
   };
 }
 
+// Fix: Update PageProps type
 type PageProps = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>; // Now a Promise
 };
 
-export default function BlogPostPage({ params }: PageProps) {
-  const post = getPostBySlug(params.slug);
+// Fix: Make component async and await params
+export default async function BlogPostPage({ params }: PageProps) {
+  const { slug } = await params; // Await params
+  const post = getPostBySlug(slug);
+  
   if (!post) {
     notFound();
   }
 
-  // Get all posts and filter similar ones by shared tags, excluding current post
   const allPosts = getAllPosts();
   const similarPosts = allPosts
     .filter(
@@ -55,7 +57,7 @@ export default function BlogPostPage({ params }: PageProps) {
         Array.isArray(post.tags) &&
         p.tags.some((tag: string) => post.tags?.includes(tag))
     )
-    .slice(0, 3); // Show up to 3 similar posts
+    .slice(0, 3);
 
   return (
     <>
@@ -69,7 +71,6 @@ export default function BlogPostPage({ params }: PageProps) {
         featured={post.featured}
       />
 
-      {/* Recommended Similar Posts Section */}
       {similarPosts.length > 0 && (
         <section className="mt-16 border-t pt-4 border-t-divider px-4 md:px-20">
           <h2 className="text-2xl font-bold mb-6">You might like :)</h2>
