@@ -1,4 +1,4 @@
-export const revalidate = 0;
+export const dynamic = "force-static";
 
 import { NextResponse } from 'next/server';
 import { getAllPosts } from '@/lib/blog-server';
