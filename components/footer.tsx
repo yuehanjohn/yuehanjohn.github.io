@@ -41,7 +41,7 @@ const Footer: React.FC = () => (
 
       <div className="flex flex-1 flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6">
         <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16 gap-4 sm:gap-6 md:gap-8 flex flex-col">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight" >
             however works for you
           </h1>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
@@ -49,7 +49,7 @@ const Footer: React.FC = () => (
           </p>
         </div>
         <div className="flex flex-row gap-2">
-          <Card className="flex-1 min-w-0" isHoverable>
+          <Card className="flex-1 min-w-0" isHoverable isPressable>
             <CardBody className=" p-3 sm:p-4 md:p-5 lg:p-6 justify-center items-center">
               <div className="flex flex-col items-center gap-2">
                 <SiGooglemeet size={30} className="text-primary" />
@@ -57,7 +57,7 @@ const Footer: React.FC = () => (
               </div>
             </CardBody>
           </Card>
-          <Card className="flex-1 min-w-0" isHoverable>
+          <Card className="flex-1 min-w-0" isHoverable isPressable>
             <CardBody className=" p-3 sm:p-4 md:p-5 lg:p-6 justify-center items-center">
               <div className="flex flex-col items-center gap-2">
                 <FaLinkedinIn size={30} className="text-foreground" />
@@ -65,7 +65,7 @@ const Footer: React.FC = () => (
               </div>
             </CardBody>
           </Card>
-          <Card className="flex-1 min-w-0" isHoverable>
+          <Card className="flex-1 min-w-0" isHoverable isPressable>
             <CardBody className=" p-3 sm:p-4 md:p-5 lg:p-6 justify-center items-center">
               <div className="flex flex-col items-center gap-2">
                 <FaWhatsapp size={30} className="text-foreground" />
@@ -75,7 +75,7 @@ const Footer: React.FC = () => (
           </Card>
         </div>
 
-        <Card isHoverable className="w-full">
+        <Card isHoverable isPressable className="w-full">
           <CardBody className="flex flex-col p-3 sm:p-4 md:p-5 lg:p-6">
             <h2 className="text-sm sm:text-base md:text-lg">Email</h2>
             <div className="flex flex-row justify-between items-center gap-2">
@@ -87,7 +87,7 @@ const Footer: React.FC = () => (
           </CardBody>
         </Card>
 
-        <Card isHoverable className="w-full">
+        <Card isHoverable isPressable className="w-full">
           <CardBody className="flex flex-col p-3 sm:p-4 md:p-5 lg:p-6">
             <h2 className="text-sm sm:text-base md:text-lg">Talk now</h2>
             <div className="flex flex-row justify-between items-center gap-2">

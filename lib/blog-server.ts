@@ -32,6 +32,8 @@ export function getAllPosts(): BlogPostMeta[] {
         readTime: data.readTime || "5 min",
         featured: data.featured || false,
         description: data.description || "",
+        img: data.img || undefined,
+        tldr: data.tldr || undefined,
       } as BlogPostMeta;
     })
     .sort((a, b) => {
@@ -68,6 +70,8 @@ export function getPostBySlug(slug: string): BlogPostData | null {
       readTime: data.readTime || "5 min",
       featured: data.featured || false,
       description: data.description || "",
+  img: data.img || undefined,
+  tldr: data.tldr || undefined,
       content,
     } as BlogPostData;
   } catch (error) {

@@ -11,7 +11,9 @@ export interface BlogPostMeta {
   readTime?: string;
   featured?: boolean;
   description?: string;
+  tldr?: string;
   slug: string;
+  img?: string;
 }
 
 export interface BlogPostData extends BlogPostMeta {

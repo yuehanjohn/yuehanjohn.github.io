@@ -1,32 +1,64 @@
 import React from "react";
-import { BlogPostMeta } from "@/lib/blog";
-import BlogNavigation from "@/components/blog/blog-navigation";
-import BlogHeader from "@/components/blog/blog-header";
-import FeaturedPostsSection from "@/components/blog/featured-posts-section";
-import RegularPostsSection from "@/components/blog/regular-posts-section";
-import EmptyState from "@/components/blog/empty-state";
+import { Metadata } from "next";
 import { getAllPosts } from "@/lib/blog-server";
+import { BlogPostMeta } from "@/lib/blog";
+import { TopBar } from "@/components/blog/topbar";
+import {
+  BlogIndexClient,
+  CommentsSection,
+} from "@/components/blog/blog-index-client";
+import { BlogHero } from "@/components/blog/hero";
 
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "A clean, fast, and accessible blog with search, pagination, and dark mode.",
+  openGraph: {
+    title: "Blog",
+    description:
+      "A clean, fast, and accessible blog with search, pagination, and dark mode.",
+    type: "website",
+    images: [
+      {
+        url: "/assets/images/dev2.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Blog preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog",
+    description:
+      "A clean, fast, and accessible blog with search, pagination, and dark mode.",
+    images: ["/assets/images/dev2.jpg"],
+  },
+};
 
-export default function test() {
-    const posts = getAllPosts();
-  
-  const featuredPosts = posts.filter((post) => post.featured);
-  const regularPosts = posts.filter((post) => !post.featured);
+export default async function TestBlogPage() {
+  // SSG: evaluated at build time; for ISR, could wrap in a route handler or fetch with revalidate.
+  const posts: BlogPostMeta[] = getAllPosts();
+  const latest = posts[0];
 
   return (
     <div className="min-h-screen bg-background">
-      <BlogNavigation />
+      {/* Accessible top bar with dark mode */}
+      <TopBar count={posts.length} />
 
-      {/* Main Content */}
-      <div className="pt-16 sm:pt-20 md:pt-24 px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <BlogHeader />
-          <FeaturedPostsSection featuredPosts={featuredPosts} />
-          <RegularPostsSection regularPosts={regularPosts} />
-          {posts.length === 0 && <EmptyState />}
-        </div>
-      </div>
+      {/* Billion-dollar minimalist hero */}
+      <BlogHero latest={latest} />
+
+      {/* Main listing with search + pagination */}
+      <main className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 py-10">
+        {posts.length === 0 ? (
+          <p className="py-24 text-center text-foreground-600">
+            No posts yet. Check back soon.
+          </p>
+        ) : (
+          <BlogIndexClient posts={posts} pageSize={6} />
+        )}
+      </main>
     </div>
   );
 }

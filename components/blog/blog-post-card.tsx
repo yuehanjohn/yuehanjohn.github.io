@@ -1,7 +1,15 @@
 "use client";
 
 import React from "react";
-import { Card, CardBody, CardHeader, Chip, User } from "@heroui/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Chip,
+  Image,
+  Tooltip,
+} from "@heroui/react";
 import Link from "next/link";
 import { BlogPostMeta } from "@/lib/blog";
 
@@ -10,7 +18,10 @@ interface BlogPostCardProps {
   isFeatured?: boolean;
 }
 
-export default function BlogPostCard({ post, isFeatured = false }: BlogPostCardProps) {
+export default function BlogPostCard({
+  post,
+  isFeatured = false,
+}: BlogPostCardProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
@@ -20,140 +31,76 @@ export default function BlogPostCard({ post, isFeatured = false }: BlogPostCardP
     });
   };
 
-  if (isFeatured) {
-    return (
-      <Card
-        key={post.slug}
-        className="group hover:shadow-xl transition-all duration-300 cursor-pointer h-full"
-        isPressable
-        as={Link}
-        href={`/blog/${post.slug}`}
-      >
-        <CardHeader className="flex flex-col items-start gap-2 sm:gap-3 p-4 sm:p-5 md:p-6">
-          <div className="flex justify-between items-start w-full">
-            <Chip color="primary" variant="flat" size="sm">
-              Featured
-            </Chip>
-            <div className="text-xs sm:text-sm text-foreground-600">
-              {formatDate(post.publishedAt)}
-            </div>
-          </div>
-          <h3 className="text-lg sm:text-xl font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-            {post.title}
-          </h3>
-          {post.description && (
-            <p className="text-sm sm:text-base text-foreground-700 line-clamp-3">
-              {post.description}
-            </p>
-          )}
-        </CardHeader>
-        <CardBody className="pt-0 px-4 sm:px-5 md:px-6 pb-4 sm:pb-5 md:pb-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-            <div className="flex items-center gap-2 sm:gap-3">
-              {post.author && (
-                <User
-                  name={post.author.name}
-                  avatarProps={{
-                    src: post.author.avatar || "/assets/portraits/profile.PNG",
-                    size: "sm",
-                  }}
-                  classNames={{
-                    name: "text-xs sm:text-sm",
-                  }}
-                />
-              )}
-            </div>
-            <div className="flex items-center gap-2 text-xs sm:text-sm text-foreground-600">
-              {post.readTime && <span>{post.readTime} read</span>}
-            </div>
-          </div>
-          {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1 sm:gap-2 mt-3 sm:mt-4">
-              {post.tags.slice(0, 3).map((tag, index) => (
-                <Chip
-                  key={index}
-                  variant="bordered"
-                  size="sm"
-                  className="text-xs"
-                >
-                  {tag}
-                </Chip>
-              ))}
-              {post.tags.length > 3 && (
-                <Chip variant="bordered" size="sm" className="text-xs">
-                  +{post.tags.length - 3} more
-                </Chip>
-              )}
-            </div>
-          )}
-        </CardBody>
-      </Card>
-    );
-  }
-
   return (
     <Card
       key={post.slug}
-      className="group hover:shadow-lg transition-all duration-300 cursor-pointer h-full"
+      className="group hover:shadow-2xl transition-all duration-500 cursor-pointer h-full border-none bg-gradient-to-br from-primary/5 via-background to-secondary/5 overflow-hidden"
       isPressable
       as={Link}
       href={`/blog/${post.slug}`}
     >
-      <CardHeader className="flex flex-col items-start gap-2 sm:gap-3 p-3 sm:p-4">
-        <div className="flex justify-between items-start w-full">
-          <div className="text-xs sm:text-sm text-foreground-600">
-            {formatDate(post.publishedAt)}
-          </div>
-          {post.readTime && (
-            <div className="text-xs sm:text-sm text-foreground-600">
-              {post.readTime} read
+      <CardBody className="p-0 relative flex-none">
+        <div className="relative overflow-hidden">
+          <div className="absolute top-4 left-4 right-4 z-20">
+            <div className="flex items-center gap-2 mb-2">
+              {(post.featured || isFeatured) && (
+                <Chip className="z-20" color="primary" variant="flat">
+                  Featured
+                </Chip>
+              )}
+              {post.readTime && (
+                <Chip variant="flat" color="secondary">
+                  {post.readTime}
+                </Chip>
+              )}
             </div>
-          )}
+          </div>
+          <Image
+            alt={post.title}
+            className="w-full h-auto aspect-[16/9] object-cover group-hover:scale-110 transition-transform duration-500"
+            src={post.img || "/assets/images/dev.jpg"}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </div>
-        <h3 className="text-base sm:text-lg font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-          {post.title}
+      </CardBody>
+      <CardFooter className="p-4 flex flex-col gap-2">
+        <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors text-ellipsis text-left w-full h-fit">
+          {post.title.length > 80
+            ? post.title.slice(0, 77) + "..."
+            : post.title}
         </h3>
         {post.description && (
-          <p className="text-xs sm:text-sm text-foreground-700 line-clamp-2">
+          <p className="text-sm text-foreground/70 line-clamp-2">
             {post.description}
           </p>
         )}
-      </CardHeader>
-      <CardBody className="pt-0 px-3 sm:px-4 pb-3 sm:pb-4">
-        {post.author && (
-          <div className="mb-2 sm:mb-3">
-            <User
-              name={post.author.name}
-              avatarProps={{
-                src: post.author.avatar || "/assets/portraits/profile.PNG",
-                size: "sm",
-              }}
-              classNames={{
-                name: "text-xs sm:text-sm",
-              }}
-            />
+        <div className="flex items-center justify-between w-full">
+          <div className="flex gap-3">
+            <p className="text-xs text-foreground/70">
+              {post.author?.name && <span className="mr-2">By {post.author.name}</span>}
+              <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+            </p>
           </div>
-        )}
-        {post.tags && post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {post.tags.slice(0, 2).map((tag, index) => (
-              <Chip
-                key={index}
-                variant="bordered"
+          {post.tldr && (
+            <Tooltip
+              content={
+                <div className="px-1 py-2 max-w-64">
+                  <div className="text-md">{post.tldr}</div>
+                </div>
+              }
+            >
+              <Button
                 size="sm"
-                className="text-xs"
+                variant="flat"
+                color="primary"
+                className="min-w-0"
               >
-                {tag}
-              </Chip>
-            ))}
-            {post.tags.length > 2 && (
-              <Chip variant="bordered" size="sm" className="text-xs">
-                +{post.tags.length - 2}
-              </Chip>
-            )}
-          </div>
-        )}
-      </CardBody>
+                Tl;DR
+              </Button>
+            </Tooltip>
+          )}
+        </div>
+      </CardFooter>
     </Card>
   );
 }
