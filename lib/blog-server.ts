@@ -20,10 +20,16 @@ export function getAllPosts(): BlogPostMeta[] {
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data } = matter(fileContents);
 
+      // Use file creation time as deterministic fallback for publishedAt
+      let publishedAt = data.publishedAt;
+      if (!publishedAt) {
+        const stats = fs.statSync(fullPath);
+        publishedAt = stats.birthtime.toISOString();
+      }
       return {
         slug,
         title: data.title || "Untitled",
-        publishedAt: data.publishedAt || new Date().toISOString(),
+        publishedAt,
         author: data.author || {
           name: "Anonymous",
           avatar: "/assets/portraits/profile.PNG",

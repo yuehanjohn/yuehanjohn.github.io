@@ -181,7 +181,7 @@ export function BlogIndexClient({ posts, pageSize = 6 }: Props) {
     <section aria-labelledby="all-posts" className="mt-10">
       <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 justify-between mb-6">
         <h2 id="all-posts" className="text-xl md:text-2xl font-semibold">
-          All Posts
+          All Blogs
         </h2>
         <div className="flex flex-col md:flex-row gap-2 w-full md:w-auto h-fit">
           <Input
@@ -266,13 +266,8 @@ export function BlogIndexClient({ posts, pageSize = 6 }: Props) {
             variants={container}
           >
             {visible.map((post) => (
-              <motion.div
-                key={post.slug}
-                variants={item}
-                whileHover={{ y: -4, scale: 1.01 }}
-              >
-                <BlogPostCard post={post} isFeatured={post.featured} />
-              </motion.div>
+
+                <BlogPostCard key={post.slug} post={post} isFeatured={post.featured} />
             ))}
           </motion.div>
           <nav

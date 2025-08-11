@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@heroui/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -9,7 +8,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans, fontBebas, fontNunito } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import SmoothScroll from "@/components/smoothScroll";
-import Footer  from "@/components/footer";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: {
@@ -47,9 +46,9 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
-            {/* <Navbar /> */}
+            <Navbar />
             <SmoothScroll>
-              <main className="">{children}</main>
+              <main className="w-full -mt-[100px]">{children}</main>
               <Footer />
             </SmoothScroll>
           </div>

@@ -2,65 +2,30 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Yuehan John",
-  description: "Hirable Ex-AI Founder | Sharing what used to be impossible until AI",
+  description:
+    "Hirable Ex-AI Founder | Sharing what used to be impossible until AI",
   navItems: [
+    {
+      label: "Blog",
+      href: "/blog",
+    },
+    {
+      label: "Contact",
+      href: "/contact",
+    },
+  ],
+  navMenuItems: [
     {
       label: "Home",
       href: "/",
-    },
-    {
-      label: " ",
-      href: "/docs",
-    },
-    {
-      label: "Fonts",
-      href: "/fonts",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
     },
     {
       label: "Blog",
       href: "/blog",
     },
     {
-      label: "About",
-      href: "/about",
-    },
-  ],
-  navMenuItems: [
-    {
-      label: "Profile",
-      href: "/profile",
-    },
-    {
-      label: "Dashboard",
-      href: "/dashboard",
-    },
-    {
-      label: "Projects",
-      href: "/projects",
-    },
-    {
-      label: "Team",
-      href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
+      label: "Contact",
+      href: "/contact",
     },
   ],
   links: {

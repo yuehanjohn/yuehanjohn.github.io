@@ -1,64 +1,123 @@
-import React from "react";
-import { Metadata } from "next";
-import { getAllPosts } from "@/lib/blog-server";
-import { BlogPostMeta } from "@/lib/blog";
-import { TopBar } from "@/components/blog/topbar";
-import {
-  BlogIndexClient,
-  CommentsSection,
-} from "@/components/blog/blog-index-client";
-import { BlogHero } from "@/components/blog/hero";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "A clean, fast, and accessible blog with search, pagination, and dark mode.",
-  openGraph: {
-    title: "Blog",
-    description:
-      "A clean, fast, and accessible blog with search, pagination, and dark mode.",
-    type: "website",
-    images: [
-      {
-        url: "/assets/images/dev2.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Blog preview",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blog",
-    description:
-      "A clean, fast, and accessible blog with search, pagination, and dark mode.",
-    images: ["/assets/images/dev2.jpg"],
-  },
-};
+import React, { useEffect, useId, useRef, useState } from "react";
+import { useOutsideClick } from "@/hooks/useOutsideClick";
+import ExpandableCardModal from "@/components/ExpandableCardModal";
+import CardList from "@/components/CardList";
+import { Card } from "@/components/CardList";
 
-export default async function TestBlogPage() {
-  // SSG: evaluated at build time; for ISR, could wrap in a route handler or fetch with revalidate.
-  const posts: BlogPostMeta[] = getAllPosts();
-  const latest = posts[0];
+const cards: Card[] = [
+  {
+    description: "Lana Del Rey",
+    title: "Summertime Sadness",
+    src: "https://assets.aceternity.com/demos/lana-del-rey.jpeg",
+    ctaText: "Visit",
+    ctaLink: "https://ui.aceternity.com/templates",
+    content: () => (
+      <p>
+        Lana Del Rey, an iconic American singer-songwriter, is celebrated for
+        her melancholic and cinematic music style. Born Elizabeth Woolridge
+        Grant in New York City, she has captivated audiences worldwide with her
+        haunting voice and introspective lyrics. <br /> <br /> Her songs often
+        explore themes of tragic romance, glamour, and melancholia, drawing
+        inspiration from both contemporary and vintage pop culture. With a
+        career that has seen numerous critically acclaimed albums, Lana Del Rey
+        has established herself as a unique and influential figure in the music
+        industry, earning a dedicated fan base and numerous accolades.
+      </p>
+    ),
+  },
+  {
+    description: "Babbu Maan",
+    title: "Mitran Di Chhatri",
+    src: "https://assets.aceternity.com/demos/babbu-maan.jpeg",
+    ctaText: "Visit",
+    ctaLink: "https://ui.aceternity.com/templates",
+    content: () => (
+      <p>
+        Babu Maan, a legendary Punjabi singer, is renowned for his soulful voice
+        and profound lyrics that resonate deeply with his audience. Born in the
+        village of Khant Maanpur in Punjab, India, he has become a cultural icon
+        in the Punjabi music industry. <br /> <br /> His songs often reflect the
+        struggles and triumphs of everyday life, capturing the essence of
+        Punjabi culture and traditions. With a career spanning over two decades,
+        Babu Maan has released numerous hit albums and singles that have
+        garnered him a massive fan following both in India and abroad.
+      </p>
+    ),
+  },
+  {
+    description: "Metallica",
+    title: "For Whom The Bell Tolls",
+    src: "https://assets.aceternity.com/demos/metallica.jpeg",
+    ctaText: "Visit",
+    ctaLink: "https://ui.aceternity.com/templates",
+    content: () => (
+      <p>
+        Metallica, an iconic American heavy metal band, is renowned for their
+        powerful sound and intense performances that resonate deeply with their
+        audience. Formed in Los Angeles, California, they have become a cultural
+        icon in the heavy metal music industry. <br /> <br /> Their songs often
+        reflect themes of aggression, social issues, and personal struggles,
+        capturing the essence of the heavy metal genre. With a career spanning
+        over four decades, Metallica has released numerous hit albums and
+        singles that have garnered them a massive fan following both in the
+        United States and abroad.
+      </p>
+    ),
+  },
+  {
+    description: "Lord Himesh",
+    title: "Aap Ka Suroor",
+    src: "https://assets.aceternity.com/demos/aap-ka-suroor.jpeg",
+    ctaText: "Visit",
+    ctaLink: "https://ui.aceternity.com/templates",
+    content: () => (
+      <p>
+        Himesh Reshammiya, a renowned Indian music composer, singer, and actor,
+        is celebrated for his distinctive voice and innovative compositions.
+        Born in Mumbai, India, he has become a prominent figure in the Bollywood
+        music industry. <br /> <br /> His songs often feature a blend of
+        contemporary and traditional Indian music, capturing the essence of
+        modern Bollywood soundtracks. With a career spanning over two decades,
+        Himesh Reshammiya has released numerous hit albums and singles that have
+        garnered him a massive fan following both in India and abroad.
+      </p>
+    ),
+  },
+];
+
+export default function ExpandableCardDemo() {
+  const [active, setActive] = useState<Card | boolean | null>(null);
+  const id = useId();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setActive(false);
+      }
+    }
+    if (active && typeof active === "object") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [active]);
+
+  useOutsideClick(ref, () => setActive(null));
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Accessible top bar with dark mode */}
-      <TopBar count={posts.length} />
-
-      {/* Billion-dollar minimalist hero */}
-      <BlogHero latest={latest} />
-
-      {/* Main listing with search + pagination */}
-      <main className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8 py-10">
-        {posts.length === 0 ? (
-          <p className="py-24 text-center text-foreground-600">
-            No posts yet. Check back soon.
-          </p>
-        ) : (
-          <BlogIndexClient posts={posts} pageSize={6} />
-        )}
-      </main>
-    </div>
+    <>
+      <ExpandableCardModal
+        active={active}
+        id={id}
+        refObj={ref}
+        onClose={() => setActive(null)}
+      />
+      <CardList cards={cards} id={id} onCardClick={setActive} />
+    </>
   );
 }

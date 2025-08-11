@@ -146,7 +146,6 @@ export default function BlogPost({
                             width={800}
                             height={400}
                             className="rounded-lg shadow-md w-full h-auto"
-                            {...props}
                           />
                           {alt && (
                             <p className="text-center text-xs sm:text-sm text-foreground-600 mt-2 italic">
@@ -304,10 +303,6 @@ export default function BlogPost({
           </div>
         </div>
       </TracingBeam>
-
-      <div className="flex flex-col w-full bg-red h-screen">
-        <div>You might like</div>
-      </div>
     </div>
   );
 }
