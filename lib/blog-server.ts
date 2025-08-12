@@ -15,10 +15,12 @@ export function getAllPosts(): BlogPostMeta[] {
   const allPostsData = fileNames
     .filter((fileName) => fileName.endsWith(".md") || fileName.endsWith(".mdx"))
     .map((fileName) => {
-      const slug = fileName.replace(/\.(md|mdx)$/, "");
+      const fallbackSlug = fileName.replace(/\.(md|mdx)$/, "");
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, "utf8");
       const { data } = matter(fileContents);
+      // Prefer custom frontmatter slug if provided, else fallback to filename
+      const slug: string = (typeof data.slug === "string" && data.slug.trim()) || fallbackSlug;
 
       // Use file creation time as deterministic fallback for publishedAt
       let publishedAt = data.publishedAt;
@@ -31,8 +33,8 @@ export function getAllPosts(): BlogPostMeta[] {
         title: data.title || "Untitled",
         publishedAt,
         author: data.author || {
-          name: "Anonymous",
-          avatar: "/assets/portraits/profile.PNG",
+          name: "Yuehan John",
+          avatar: "/assets/profile.png",
         },
         tags: data.tags || [],
         readTime: data.readTime || "5 min",
@@ -51,33 +53,51 @@ export function getAllPosts(): BlogPostMeta[] {
 
 export function getPostBySlug(slug: string): BlogPostData | null {
   try {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
-    let fileContents: string;
-    
-    try {
-      fileContents = fs.readFileSync(fullPath, "utf8");
-    } catch {
-      // Try .mdx extension if .md doesn't exist
-      const mdxPath = path.join(postsDirectory, `${slug}.mdx`);
-      fileContents = fs.readFileSync(mdxPath, "utf8");
+    // First attempt: direct filename match (backward compatible)
+    const mdPath = path.join(postsDirectory, `${slug}.md`);
+    const mdxPath = path.join(postsDirectory, `${slug}.mdx`);
+    let filePath: string | null = null;
+
+    if (fs.existsSync(mdPath)) {
+      filePath = mdPath;
+    } else if (fs.existsSync(mdxPath)) {
+      filePath = mdxPath;
+    } else {
+      // Fallback: search for a file whose frontmatter slug matches
+      if (!fs.existsSync(postsDirectory)) return null;
+      const fileNames = fs.readdirSync(postsDirectory).filter((f) => f.endsWith(".md") || f.endsWith(".mdx"));
+      for (const fname of fileNames) {
+        const fpath = path.join(postsDirectory, fname);
+        const raw = fs.readFileSync(fpath, "utf8");
+        const { data } = matter(raw);
+        if (typeof data.slug === "string" && data.slug.trim() === slug) {
+          filePath = fpath;
+          break;
+        }
+      }
+      if (!filePath) {
+        return null;
+      }
     }
 
+    const fileContents = fs.readFileSync(filePath, "utf8");
     const { data, content } = matter(fileContents);
+    const effectiveSlug: string = (typeof data.slug === "string" && data.slug.trim()) || slug;
 
     return {
-      slug,
+      slug: effectiveSlug,
       title: data.title || "Untitled",
       publishedAt: data.publishedAt || new Date().toISOString(),
       author: data.author || {
         name: "Anonymous",
-        avatar: "/assets/portraits/profile.PNG",
+        avatar: "/assets/profile.png",
       },
       tags: data.tags || [],
       readTime: data.readTime || "5 min",
       featured: data.featured || false,
       description: data.description || "",
-  img: data.img || undefined,
-  tldr: data.tldr || undefined,
+      img: data.img || undefined,
+      tldr: data.tldr || undefined,
       content,
     } as BlogPostData;
   } catch (error) {
@@ -92,7 +112,33 @@ export function getAllPostSlugs(): string[] {
   }
 
   const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames
-    .filter((fileName) => fileName.endsWith(".md") || fileName.endsWith(".mdx"))
-    .map((fileName) => fileName.replace(/\.(md|mdx)$/, ""));
+  const slugs: string[] = [];
+  const seen = new Set<string>();
+  for (const fileName of fileNames) {
+    if (!(fileName.endsWith(".md") || fileName.endsWith(".mdx"))) continue;
+    const fullPath = path.join(postsDirectory, fileName);
+    const raw = fs.readFileSync(fullPath, "utf8");
+    const { data } = matter(raw);
+    const fallbackSlug = fileName.replace(/\.(md|mdx)$/, "");
+    const customSlug: string | null = (typeof data.slug === "string" && data.slug.trim()) || null;
+
+    // Always include the canonical/custom slug if present
+    const pushSlug = (s: string) => {
+      if (!seen.has(s)) {
+        slugs.push(s);
+        seen.add(s);
+      }
+    };
+
+    if (customSlug) {
+      pushSlug(customSlug);
+      // Also include the filename-based slug for backward compatibility
+      if (fallbackSlug !== customSlug) {
+        pushSlug(fallbackSlug);
+      }
+    } else {
+      pushSlug(fallbackSlug);
+    }
+  }
+  return slugs;
 }

@@ -106,6 +106,7 @@ const example = "This will be syntax highlighted";
 | `readTime` | string | No | Reading time estimate |
 | `featured` | boolean | No | Whether post is featured |
 | `description` | string | No | Post description for previews |
+| `slug` | string | No | Custom URL slug (default is filename). If provided, the post will be served at `/blog/<slug>`. Old filename-based URLs will redirect to the canonical slug. |
 
 ## Accessing Blog Posts
 

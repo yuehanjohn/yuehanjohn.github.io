@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getPostBySlug, getAllPostSlugs, getAllPosts } from "@/lib/blog-server";
 import BlogPostCard from "@/components/blog/blog-post-card";
 import BlogPost from "@/components/blog/blog-post";
@@ -46,6 +46,11 @@ export default async function BlogPostPage({ params }: PageProps) {
   
   if (!post) {
     notFound();
+  }
+
+  // If a custom canonical slug is defined and differs from the route param, redirect to canonical
+  if (post.slug !== slug) {
+    redirect(`/blog/${post.slug}`);
   }
 
   const allPosts = getAllPosts();
