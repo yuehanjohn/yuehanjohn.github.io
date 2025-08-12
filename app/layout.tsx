@@ -3,6 +3,7 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
+import LoaderWrapper from "@/components/LoaderWrapper";
 
 import { siteConfig } from "@/config/site";
 import { fontSans, fontBebas, fontNunito } from "@/config/fonts";
@@ -44,16 +45,20 @@ export default function RootLayout({
           fontNunito.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            <Navbar />
-            <SmoothScroll>
-              <main className="w-full -mt-[100px]">{children}</main>
-              <Footer />
-            </SmoothScroll>
-          </div>
-        </Providers>
+        <LoaderWrapper>
+          <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+            <div className="relative flex flex-col h-screen">
+              <Navbar />
+              <SmoothScroll>
+                <main className="w-full -mt-[100px]">{children}</main>
+                <Footer />
+              </SmoothScroll>
+            </div>
+          </Providers>
+        </LoaderWrapper>
       </body>
     </html>
   );
 }
+
+// LoaderWrapper is now a client component in components/LoaderWrapper.tsx

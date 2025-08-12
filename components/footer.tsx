@@ -10,117 +10,33 @@ import ScrollFloat from "./text/scrollfloat";
 
 const Footer: React.FC = () => (
   <footer className="min-h-screen h-fit justify-between items-center bg-background z-30 pt-[100px]">
-    <div className=" flex flex-col h-fit lg:flex-row lg:flex-nowrap flex-wrap p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
-      <div className="flex flex-1 flex-col">
-        <div className="mb-8 sm:mb-12 md:mb-16 lg:mb-24 xl:mb-32 gap-2 sm:gap-3 md:gap-4 flex flex-col">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-tight">
-            <ScrollFloat
-              animationDuration={3}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=80%"
-              scrollEnd="bottom bottom-=70%"
-              stagger={0.03}
-            >
-              Get in touch. Fast.
-            </ScrollFloat>
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-foreground">
-            <ScrollFloat
-              animationDuration={3}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=80%"
-              scrollEnd="bottom bottom-=70%"
-              stagger={0.03}
-            >
-              hirable Ex-AI Founder
-            </ScrollFloat>
-          </p>
-        </div>
-        <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-            <ScrollFloat
-              animationDuration={3}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=30%"
-              scrollEnd="bottom bottom-=20%"
-              stagger={0.03}
-            >
-              Consulting latest AI strategy
-            </ScrollFloat>
-          </h2>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg">
-            <ScrollFloat
-              animationDuration={3}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=30%"
-              scrollEnd="bottom bottom-=20%"
-              stagger={0.03}
-            >
-              Architecture decisions, tool selection, and implementation
-            </ScrollFloat>
-            <br className="hidden sm:block" />
-            <ScrollFloat
-              animationDuration={3}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=30%"
-              scrollEnd="bottom bottom-=20%"
-              stagger={0.03}
-            >
-              roadmaps based on real development experience.
-            </ScrollFloat>
-          </p>
-        </div>
-        <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-            <ScrollFloat
-              animationDuration={3}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=30%"
-              scrollEnd="bottom bottom-=20%"
-              stagger={0.03}
-            >
-              AI Training for professionals
-            </ScrollFloat>
-          </h2>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg">
-            <ScrollFloat
-              animationDuration={3}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=30%"
-              scrollEnd="bottom bottom-=20%"
-              stagger={0.03}
-            >
-              Training programs to help sales, marketing, C-level & board.
-            </ScrollFloat>
-          </p>
-        </div>
+    <div className=" flex flex-col w-full h-fit lg:flex-row lg:flex-nowrap flex-wrap p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
+      <div className="flex-1 mb-8 sm:mb-10 md:mb-12 lg:mb-16 gap-4 sm:gap-6 md:gap-8 flex flex-col">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
+          <ScrollFloat
+            animationDuration={3}
+            ease="back.inOut(2)"
+            scrollStart="center bottom+=80%"
+            scrollEnd="bottom bottom-=70%"
+            stagger={0.03}
+          >
+            however works for you
+          </ScrollFloat>
+        </h1>
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+          <ScrollFloat
+            animationDuration={3}
+            ease="back.inOut(2)"
+            scrollStart="center bottom+=80%"
+            scrollEnd="bottom bottom-=70%"
+            stagger={0.03}
+          >
+            Let's not waste any time.
+          </ScrollFloat>
+        </p>
       </div>
 
       <div className="flex flex-1 flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-        <div className="mb-8 sm:mb-10 md:mb-12 lg:mb-16 gap-4 sm:gap-6 md:gap-8 flex flex-col">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
-            <ScrollFloat
-              animationDuration={3}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=80%"
-              scrollEnd="bottom bottom-=70%"
-              stagger={0.03}
-            >
-              however works for you
-            </ScrollFloat>
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-            <ScrollFloat
-              animationDuration={3}
-              ease="back.inOut(2)"
-              scrollStart="center bottom+=80%"
-              scrollEnd="bottom bottom-=70%"
-              stagger={0.03}
-            >
-              Let's not waste any time.
-            </ScrollFloat>
-          </p>
-        </div>
         <div className="flex flex-row gap-2">
           <Card
             className="flex-1 min-w-0"
