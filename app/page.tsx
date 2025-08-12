@@ -5,7 +5,6 @@ import { Cover } from "@/components/effects/cover";
 
 import HeroSection from "@/components/landing/HeroSection";
 import IntroSection from "@/components/landing/IntroSection";
-import ImageHeroSection from "@/components/landing/ImageHeroSection";
 import CapabilitiesSection from "@/components/landing/CapabilitiesSection";
 
 import PeopleSaySection from "@/components/PeopleSaySection";

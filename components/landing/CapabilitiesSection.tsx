@@ -158,7 +158,9 @@ const CapabilitiesSection = () => (
               <CardHeader className="flex flex-col items-start gap-2 max-w-xs md:max-w-md lg:max-w-lg">
                 <h1 className="text-2xl md:text-4xl lg:text-5xl">AI agents</h1>
                 <p className="text-base md:text-lg lg:text-xl">
-                  Build and deploy custom AI agents for automation, data analysis, and decision-making. Integrate LLMs, APIs, and cloud services into your products.
+                  Build and deploy custom AI agents for automation, data
+                  analysis, and decision-making. Integrate LLMs, APIs, and cloud
+                  services into your products.
                 </p>
               </CardHeader>
             </Card>
@@ -339,7 +341,7 @@ const CapabilitiesSection = () => (
                 }}
               >
                 <ReactPlayer
-                  src="https://youtu.be/DHJYJCazX8M"
+                  src="https://youtu.be/cz4biAjIFc0"
                   playing
                   loop
                   controls={false}
@@ -362,9 +364,14 @@ const CapabilitiesSection = () => (
           <div className="absolute top-[10%] left-[5%] md:top-[20%] md:left-[10%] z-50 w-fit h-fit">
             <Card isBlurred>
               <CardHeader className="flex flex-col items-start gap-2 max-w-xs md:max-w-md lg:max-w-lg">
-                <h1 className="text-2xl md:text-4xl lg:text-5xl">Machine Learnings</h1>
+                <h1 className="text-2xl md:text-4xl lg:text-5xl">
+                  Machine Learnings
+                </h1>
                 <p className="text-base md:text-lg lg:text-xl">
-                  From image recognition, voice processing, text pattern analysis, to a wide range of machine learning applications. Skilled in deep learning, neural networks, and building intelligent systems for complex data tasks.
+                  From image recognition, voice processing, text pattern
+                  analysis, to a wide range of machine learning applications.
+                  Skilled in deep learning, neural networks, and building
+                  intelligent systems for complex data tasks.
                 </p>
               </CardHeader>
             </Card>
@@ -539,7 +546,7 @@ const CapabilitiesSection = () => (
                 }}
               >
                 <ReactPlayer
-                  src="https://youtu.be/DHJYJCazX8M"
+                  src="https://youtu.be/6e49BbnlCbk"
                   playing
                   loop
                   controls={false}
@@ -564,7 +571,9 @@ const CapabilitiesSection = () => (
               <CardHeader className="flex flex-col items-start gap-2 max-w-xs md:max-w-md lg:max-w-lg">
                 <h1 className="text-2xl md:text-4xl lg:text-5xl">Apps</h1>
                 <p className="text-base md:text-lg lg:text-xl">
-                  Webapp, mobile app, desktop app, or even a simple command-line tool. I can build it all. From concept to deployment, I ensure a smooth and efficient development process.
+                  Webapp, mobile app, desktop app, or even a simple command-line
+                  tool. I can build it all. From concept to deployment, I ensure
+                  a smooth and efficient development process.
                 </p>
               </CardHeader>
             </Card>
@@ -804,7 +813,7 @@ const CapabilitiesSection = () => (
                 }}
               >
                 <ReactPlayer
-                  src="https://youtu.be/DHJYJCazX8M"
+                  src="https://youtu.be/9mTzbBLLCqs"
                   playing
                   loop
                   controls={false}
@@ -827,9 +836,13 @@ const CapabilitiesSection = () => (
           <div className="absolute top-[10%] left-[5%] md:top-[20%] md:left-[10%] z-50 w-fit h-fit">
             <Card isBlurred>
               <CardHeader className="flex flex-col items-start gap-2 max-w-xs md:max-w-md lg:max-w-lg">
-                <h1 className="text-2xl md:text-4xl lg:text-5xl">Design & Branding</h1>
+                <h1 className="text-2xl md:text-4xl lg:text-5xl">
+                  Design & Branding
+                </h1>
                 <p className="text-base md:text-lg lg:text-xl">
-                  From UI/UX design to branding, I create visually appealing and user-friendly designs. My design process focuses on enhancing user experience and meeting business goals.
+                  From UI/UX design to branding, I create visually appealing and
+                  user-friendly designs. My design process focuses on enhancing
+                  user experience and meeting business goals.
                 </p>
               </CardHeader>
             </Card>
@@ -941,7 +954,7 @@ const CapabilitiesSection = () => (
                 }}
               >
                 <ReactPlayer
-                  src="https://youtu.be/DHJYJCazX8M"
+                  src="https://youtu.be/Lhjwln_taYk"
                   playing
                   loop
                   controls={false}
@@ -966,7 +979,9 @@ const CapabilitiesSection = () => (
               <CardHeader className="flex flex-col items-start gap-2 max-w-xs md:max-w-md lg:max-w-lg">
                 <h1 className="text-2xl md:text-4xl lg:text-5xl">Softskills</h1>
                 <p className="text-base md:text-lg lg:text-xl">
-                  Managed team from 3 to 50+ people, I can and had lead a team through complex projects, ensuring effective communication, and fostering a collaborative environment.
+                  Managed team from 3 to 50+ people, I can and had lead a team
+                  through complex projects, ensuring effective communication,
+                  and fostering a collaborative environment.
                 </p>
               </CardHeader>
             </Card>
