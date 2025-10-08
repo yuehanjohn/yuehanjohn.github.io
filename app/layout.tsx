@@ -3,7 +3,6 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
-import LoaderWrapper from "@/components/LoaderWrapper";
 
 import { siteConfig } from "@/config/site";
 import { fontSans, fontBebas, fontNunito } from "@/config/fonts";
@@ -45,7 +44,6 @@ export default function RootLayout({
           fontNunito.variable
         )}
       >
-        <LoaderWrapper>
           <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
             <div className="relative flex flex-col h-screen">
               <Navbar />
@@ -55,7 +53,6 @@ export default function RootLayout({
               </SmoothScroll>
             </div>
           </Providers>
-        </LoaderWrapper>
       </body>
     </html>
   );

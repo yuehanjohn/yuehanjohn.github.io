@@ -7,8 +7,7 @@ import { CircularProgress } from "@heroui/react";
 export default function Loading() {
   return (
     <div className="fixed inset-0 h-screen w-full z-50 flex items-center justify-center bg-background gap-4">
-      <CircularProgress color="primary" />
-      <ShinyText text="Loading..." disabled={false} speed={1} />
+      <ShinyText text="Thinking..." disabled={false} speed={3} />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Cover } from "@/components/effects/cover";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import HeroSection from "@/components/landing/HeroSection";
 import IntroSection from "@/components/landing/IntroSection";
 import CapabilitiesSection from "@/components/landing/CapabilitiesSection";
@@ -27,8 +26,7 @@ function PageWithOverlay() {
   }, []);
   return (
     <>
-      {showOverlay && <LoadingOverlay duration={2000} />}
-      <div>
+''      <div>
         <section className="section">
           <HeroSection />
         </section>
@@ -68,9 +66,9 @@ function PageWithOverlay() {
             </p>
           </div>
         </section>
-        <section className="section hidden md:flex">
+        {/* <section className="section hidden md:flex">
           <PeopleSaySection />
-        </section>
+        </section> */}
       </div>
     </>
   );
