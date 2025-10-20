@@ -106,6 +106,7 @@ const HeroSection = () => {
               "kaewtaart.png",
               "businessturku.png",
               "fucard.png",
+              "slush.png",
             ].map((logo, idx) => (
               <div
                 key={idx}
